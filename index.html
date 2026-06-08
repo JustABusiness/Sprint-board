@@ -1,0 +1,507 @@
+
+<div class="board-header">
+  <h2 class="board-title text-blue>V-AELTIS <span class="text-blue">MVP</span> Sprint Board</h2>
+  <p class="board-subtitle">Product roadmap & engineering tasks across 8 strategic sprints</p>
+</div>
+
+<style>
+/* ════════════════════════════════════════
+   V-AELTIS JIRA CSS — PREMIUM EDITION
+════════════════════════════════════════ */
+:root {
+  --c0:#06060A; --c1:#0D0D12; --c2:#141418;
+  --c3:#1C1C22; --c4:#242428; --c5:#2E2E35;
+  --e1:rgba(255,255,255,.055); --e2:rgba(255,255,255,.09);
+  --e3:rgba(255,255,255,.14); --e4:rgba(255,255,255,.22);
+  --t1:#F0F0F5; --t2:#888898; --t3:#44444F;
+  --bl:#4477FF; --blD:rgba(68,119,255,.13); --blE:rgba(68,119,255,.3);
+  --cy:#00C4D4; --cyD:rgba(0,196,212,.1);
+  --gn:#22D47A; --gnD:rgba(34,212,122,.09); --gnE:rgba(34,212,122,.24);
+  --am:#F0A030; --amD:rgba(240,160,48,.1); --amE:rgba(240,160,48,.22);
+  --rd:#F04455; --rdD:rgba(240,68,85,.1); --rdE:rgba(240,68,85,.22);
+  --pu:#9966FF; --puD:rgba(153,102,255,.12);
+  --r4:4px; --r6:6px; --r8:8px; --r12:12px; --r16:16px; --r20:20px;
+  --ff:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+}
+
+.board {
+  padding: 40px;
+  background: radial-gradient(circle at 0% 0%, rgba(68,119,255,0.05) 0%, transparent 40%), var(--c0);
+  font-family: var(--ff);
+  color: var(--t1);
+  min-height: 100vh;
+}
+
+ body { background-color: var(--c0);  margin: 0; }                                                                                        
+/* --- Header --- */
+.board-header {
+  margin-bottom: 40px;
+  border-left: 4px solid var(--bl);
+  padding-left: 24px;
+}
+.board-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+  color: var(--t1);
+}
+.text-blue { color: var(--bl); }
+.board-subtitle {
+  font-size: 15px;
+  color: var(--t2);
+  font-weight: 500;
+}
+
+/* --- Stats --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--e1);
+  border-radius: var(--r16);
+  padding: 20px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--e3);
+  background: rgba(255, 255, 255, 0.05);
+}
+.stat-n {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 4px;
+}
+.stat-l {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* --- Filters --- */
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  padding: 8px;
+  background: var(--c1);
+  border-radius: var(--r12);
+  width: fit-content;
+  border: 1px solid var(--e1);
+}
+.fb {
+  padding: 8px 20px;
+  border-radius: var(--r8);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--t2);
+  transition: all 0.2s;
+}
+.fb:hover {
+  color: var(--t1);
+  background: var(--c3);
+}
+.fb.on {
+  background: var(--c4);
+  color: var(--bl);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.fb.on.be { color: var(--bl); }
+.fb.on.fe { color: var(--gn); }
+.fb.on.dv { color: var(--am); }
+.fb.on.mk { color: var(--rd); }
+
+/* --- Sprint --- */
+.sprint {
+  margin-bottom: 48px;
+}
+.sprint-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.sprint-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--t1);
+  letter-spacing: -0.02em;
+}
+.sprint-sub {
+  font-size: 14px;
+  color: var(--t3);
+  font-weight: 500;
+}
+.sprint-count {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--blD);
+  color: var(--bl);
+  border: 1px solid var(--blE);
+}
+
+/* --- Tasks --- */
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.task {
+  display: grid;
+  grid-template-columns: 70px 1fr auto auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 24px;
+  border-radius: var(--r12);
+  border: 1px solid var(--e1);
+  background: var(--c1);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.task::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 4px;
+  background: transparent;
+  transition: background 0.2s;
+}
+.task:hover {
+  border-color: var(--e3);
+  background: var(--c2);
+  transform: scale(1.01);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+.task:hover::before {
+  background: var(--bl);
+}
+.task-id {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--t3);
+  font-weight: 600;
+}
+.task-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.task-desc {
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.5;
+}
+
+/* --- Badges & Tags --- */
+.badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--r6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.b-be { background: var(--blD); color: #90AEFF; border: 1px solid var(--blE); }
+.b-fe { background: var(--gnD); color: #7EE8A2; border: 1px solid var(--gnE); }
+.b-dv { background: var(--amD); color: #FFCC77; border: 1px solid var(--amE); }
+.b-mk { background: var(--rdD); color: #FF9999; border: 1px solid var(--rdE); }
+
+.size {
+  font-size: 12px;
+  font-weight: 800;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--c3);
+  color: var(--t2);
+  border: 1px solid var(--e1);
+}
+.size.L { color: var(--rd); background: var(--rdD); border-color: var(--rdE); }
+.size.M { color: var(--am); background: var(--amD); border-color: var(--amE); }
+.size.S { color: var(--gn); background: var(--gnD); border-color: var(--gnE); }
+
+.pri {
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.pri.p1 { 
+  background: var(--rd); 
+  color: #fff; 
+  animation: pulse-red 2s infinite;
+}
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(240, 68, 85, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(240, 68, 85, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(240, 68, 85, 0); }
+}
+.pri.p2 { background: var(--amD); color: var(--am); border: 1px solid var(--amE); }
+.pri.p3 { background: var(--c3); color: var(--t2); border: 1px solid var(--e1); }
+
+.empty {
+  padding: 80px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--t3);
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--r20);
+  border: 2px dashed var(--e1);
+  font-weight: 500;
+}
+.task-hidden { display: none; }
+
+@media (max-width: 1024px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .board { padding: 20px; }
+  .task { grid-template-columns: 1fr auto; gap: 12px; }
+  .task-id, .size, .pri { display: none; }
+  .stat-n { font-size: 28px; }
+}
+</style>
+
+<div class="board">
+<div class="stats" id="stats">
+  <div class="stat-card"><div class="stat-n" id="s-total">0</div><div class="stat-l">Total tasks</div></div>
+  <div class="stat-card"><div class="stat-n" id="s-be" style="color:var(--bl)">0</div><div class="stat-l">Backend</div></div>
+  <div class="stat-card"><div class="stat-n" id="s-fe" style="color:var(--gn)">0</div><div class="stat-l">Frontend</div></div>
+  <div class="stat-card"><div class="stat-n" id="s-dv" style="color:var(--am)">0</div><div class="stat-l">DevOps + Marketing</div></div>
+</div>
+
+<div class="filters">
+  <button class="fb on" data-filter="all" onclick="filter('all',this)">Tất cả</button>
+  <button class="fb be" data-filter="BE" onclick="filter('BE',this)">Backend</button>
+  <button class="fb fe" data-filter="FE" onclick="filter('FE',this)">Frontend</button>
+  <button class="fb dv" data-filter="DevOps" onclick="filter('DevOps',this)">DevOps</button>
+  <button class="fb mk" data-filter="Marketing" onclick="filter('Marketing',this)">Marketing</button>
+  <button class="fb" data-filter="P1" onclick="filter('P1',this)">🔴 P1 Critical</button>
+  <button class="fb" data-filter="P2" onclick="filter('P2',this)">🟡 P2 Important</button>
+</div>
+
+<div id="board-content"></div>
+</div>
+
+<script>
+const SPRINTS = [
+  {
+    id:'s1', title:'Sprint 1 — Tháng 2, Tuần 1–2', sub:'Foundation & Auth',
+    tasks:[
+      {id:'VA-01',title:'Supabase database schema migration',desc:'Tạo tất cả 19 tables, enable RLS, set indexes theo production schema',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-02',title:'Laravel project scaffold + Sanctum auth',desc:'Setup Laravel 11, cài Sanctum, Socialite, configure .env.example',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-03',title:'User registration + login API',desc:'POST /api/auth/register, /api/auth/login, /api/auth/logout với Sanctum token',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-04',title:'Google OAuth flow',desc:'Socialite Google callback → tạo/tìm user → trả JWT token',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-05',title:'Role middleware (5 roles)',desc:'RoleMiddleware, QuotaMiddleware, InternalKeyMiddleware đầy đủ',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-06',title:'NestJS project scaffold + health check',desc:'NestJS 10 init, ConfigModule, health endpoint, CLAUDE.md, tsconfig strict',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-07',title:'Next.js project scaffold',desc:'App Router, TypeScript, Tailwind v4, folder structure, API client setup',team:'FE',size:'M',pri:'P1'},
+      {id:'VA-08',title:'Auth pages UI',desc:'Trang đăng nhập, đăng ký, Google OAuth button, form validation',team:'FE',size:'M',pri:'P1'},
+      {id:'VA-09',title:'GitHub repos + branch strategy',desc:'3 repos (api/ai/web), branch naming, PR template, CODEOWNERS',team:'DevOps',size:'S',pri:'P1'},
+      {id:'VA-10',title:'Docker setup local dev',desc:'Dockerfile cho Laravel + NestJS, docker-compose.yml với Redis + Nginx',team:'DevOps',size:'M',pri:'P1'},
+    ]
+  },
+  {
+    id:'s2', title:'Sprint 2 — Tháng 2, Tuần 3–4', sub:'AI Grading Engine (Gate 1)',
+    tasks:[
+      {id:'VA-11',title:'Anthropic SDK integration trong NestJS',desc:'AnthropicModule, inject client, prompt caching config, error handling',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-12',title:'Zod schemas cho Speaking grading output',desc:'SpeakingGradingResultSchema đầy đủ — band, criteria, errors, improvements',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-13',title:'Claude Sonnet Speaking grading service',desc:'grading.service.ts — build prompt, call Claude, validate Zod, retry logic',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-14',title:'Whisper STT service',desc:'transcription.service.ts — Supabase download, FFmpeg 16kHz, call Whisper, Promise.all 3 parts',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-15',title:'FFmpeg audio processor',desc:'audio-processor.service.ts — webm/opus → WAV 16kHz mono, error handling',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-16',title:'Speaking grading endpoint',desc:'POST /ai/speaking/grade với JWT guard, quota check, BullMQ enqueue',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-17',title:'Gold standard accuracy benchmark',desc:'20 recordings với điểm chuẩn → script benchmark → MAE report. Gate 1: ≥80%',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-18',title:'Unit tests AI grading với mock Claude',desc:'Jest tests cho grading.service — mock SDK, test Zod validation, error cases',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-19',title:'TikTok account setup + kịch bản video 1',desc:'Tạo @vaeltis, quay video "Build in public – chúng tôi đang build AI grading"',team:'Marketing',size:'S',pri:'P1'},
+      {id:'VA-20',title:'Zalo Official Account setup',desc:'Đăng ký OA, setup welcome message, tạo group beta users',team:'Marketing',size:'S',pri:'P2'},
+    ]
+  },
+  {
+    id:'s3', title:'Sprint 3 — Tháng 3, Tuần 1–2', sub:'Speaking MVP End-to-End',
+    tasks:[
+      {id:'VA-21',title:'CoTURN server setup',desc:'VPS $6/mo, turnserver.conf, TLS 5349, HMAC credentials endpoint, test NAT',team:'DevOps',size:'M',pri:'P1'},
+      {id:'VA-22',title:'WebRTC + WebSocket gateway',desc:'NestJS WebSocket gateway, ICE config endpoint, audio relay handler',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-23',title:'ElevenLabs TTS service + Redis cache',desc:'tts.service.ts — Rachel voice, cache fixed questions 30 days, pre-generate on start',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-24',title:'Question sets CRUD API',desc:'GET /ai/speaking/questions — Redis cache 24h, random by topic, exam_type filter',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-25',title:'Speaking exam room UI',desc:'3D Sarah avatar (Three.js), timer state machine, part progress, waveform',team:'FE',size:'L',pri:'P1'},
+      {id:'VA-26',title:'MediaRecorder + WebRTC client',desc:'Browser recording, ICE setup với CoTURN config, audio upload Supabase',team:'FE',size:'L',pri:'P1'},
+      {id:'VA-27',title:'Speaking results page',desc:'Band ring animation, 4 criteria bars, errors list, improvements, examiner note',team:'FE',size:'L',pri:'P1'},
+      {id:'VA-28',title:'Internal API: NestJS → Laravel lưu result',desc:'POST /api/internal/tests/speaking/save với X-Internal-Key validation',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-29',title:'Fallback MediaRecorder → HTTP upload',desc:'Nếu WebRTC fail → blob → upload Supabase → trigger grading qua HTTP',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-30',title:'TikTok video 2: "AI chấm IELTS Speaking demo"',desc:'Screen record thật → show kết quả 15s → CTA link in bio',team:'Marketing',size:'S',pri:'P1'},
+    ]
+  },
+  {
+    id:'s4', title:'Sprint 4 — Tháng 3, Tuần 3–4', sub:'Chat + Dashboard + Beta Launch',
+    tasks:[
+      {id:'VA-31',title:'Chat session service + Redis',desc:'POST /ai/chat/start — build Sarah system prompt, lưu session Redis TTL 2h',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-32',title:'SSE streaming chat endpoint',desc:'GET /ai/chat/message — intent guard (Haiku), stream tokens, lưu history Redis',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-33',title:'Post-test chat UI',desc:'EventSource client, token append, quick chips, transcript panel, scope guard message',team:'FE',size:'L',pri:'P1'},
+      {id:'VA-34',title:'Dashboard API',desc:'GET /api/dashboard/overview, /tests/history (paginated), /analytics/radar',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-35',title:'Dashboard page UI',desc:'Metrics cards, skill radar (Recharts), band progress chart, test history table',team:'FE',size:'M',pri:'P1'},
+      {id:'VA-36',title:'Landing page',desc:'Hero, stats strip, 3 benefits, testimonials, CTA — SEO meta tags đầy đủ',team:'FE',size:'M',pri:'P1'},
+      {id:'VA-37',title:'Recruit 50 beta users',desc:'Post vào Facebook IELTS groups, DM influencers IELTS, Zalo group invite',team:'Marketing',size:'M',pri:'P1'},
+      {id:'VA-38',title:'Beta feedback form + interview 10 users',desc:'Tạo Google Form, phỏng vấn 10 user đầu (30 phút), tổng hợp insights',team:'Marketing',size:'M',pri:'P1'},
+      {id:'VA-39',title:'Sentry setup Laravel + NestJS',desc:'Sentry SDK cả 2 services, source maps CI, test error capture',team:'DevOps',size:'S',pri:'P2'},
+      {id:'VA-40',title:'GitHub Actions CI pipeline',desc:'Laravel: pest tests. NestJS: jest tests. Cả 2: lint + type check on PR',team:'DevOps',size:'M',pri:'P1'},
+    ]
+  },
+  {
+    id:'s5', title:'Sprint 5 — Tháng 4, Tuần 1–2', sub:'Payment + Writing Module',
+    tasks:[
+      {id:'VA-41',title:'Stripe subscription integration',desc:'Checkout session, webhook handler, idempotency keys, subscription lifecycle',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-42',title:'VNPay IPN integration',desc:'IPN callback, HMAC-SHA512 checksum, reconciliation, failure recovery',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-43',title:'Subscription middleware + quota enforcement',desc:'Plan check middleware, weekly reset cron, upgrade prompt responses',team:'BE',size:'M',pri:'P1'},
+      {id:'VA-44',title:'Pricing page UI',desc:'3 tiers (Free/Premium/B2B), monthly/annual toggle, featured card, CTA buttons',team:'FE',size:'M',pri:'P1'},
+      {id:'VA-45',title:'Writing grading prompt + Zod schema',desc:'Build master system prompt T1+T2, WritingGradingResultSchema, character offsets',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-46',title:'Writing grading service',desc:'writing.service.ts — Task 1 + Task 2 grading, highlighted_errors với offset',team:'BE',size:'L',pri:'P1'},
+      {id:'VA-47',title:'Writing exam room UI',desc:'Split screen 40/60, rich editor, word counter real-time, auto-save status, timer',team:'FE',size:'L',pri:'P1'},
+      {id:'VA-48',title:'Writing results UI',desc:'5 score cards, essay text highlighting (3 màu), click popup lỗi, cta chat Sarah',team:'FE',size:'L',pri:'P1'},
+      {id:'VA-49',title:'Deploy staging environment',desc:'Railway (NestJS + Laravel), Vercel (Next.js), env secrets, test full flow staging',team:'DevOps',size:'M',pri:'P1'},
+      {id:'VA-50',title:'TikTok video 3–5: IELTS tips series',desc:'"Top 3 lỗi Speaking người Việt", "Tại sao 6.0 không lên 7.0", "Writing tips band 7"',team:'Marketing',size:'M',pri:'P1'},
+    ]
+  },
+  {
+    id:'s6', title:'Sprint 6 — Tháng 4, Tuần 3–4', sub:'Public Launch',
+    tasks:[
+      {id:'VA-51',title:'Resource Hub API',desc:'GET /api/resources (search+filter+paginate), VIP gating, save endpoint',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-52',title:'Resource Hub UI',desc:'Grid view, filter chips, search, tag badges, "Thực hành ngay" CTA',team:'FE',size:'M',pri:'P2'},
+      {id:'VA-53',title:'Profile + Analytics page',desc:'Line chart band progress, radar chart 4 criteria, goal progress bar, activity feed',team:'FE',size:'M',pri:'P2'},
+      {id:'VA-54',title:'Filament Admin Panel setup',desc:'CRUD question sets, user management, cost dashboard từ Redis, error logs',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-55',title:'Production deployment',desc:'Domain vaeltis.io, SSL, Nginx config, env production, health checks, monitoring',team:'DevOps',size:'L',pri:'P1'},
+      {id:'VA-56',title:'Load test + performance audit',desc:'100 concurrent speaking sessions, Lighthouse score, DB query optimizer',team:'DevOps',size:'M',pri:'P1'},
+      {id:'VA-57',title:'E2E Playwright tests happy path',desc:'Register → Speaking exam → Results → Chat Sarah → Payment flow',team:'DevOps',size:'M',pri:'P2'},
+      {id:'VA-58',title:'Public launch announcement',desc:'TikTok video launch day, Zalo broadcast, post vào IELTS groups 10+ groups',team:'Marketing',size:'M',pri:'P1'},
+      {id:'VA-59',title:'Referral program setup',desc:'Unique referral links, +1 tháng Premium cho referrer, 14 ngày trial cho referree',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-60',title:'First paying user campaign',desc:'"Người đầu tiên trả tiền" — special offer 50% tháng đầu cho 20 users đầu',team:'Marketing',size:'S',pri:'P1'},
+    ]
+  },
+  {
+    id:'s7', title:'Sprint 7 — Tháng 5', sub:'B2B + Retention',
+    tasks:[
+      {id:'VA-61',title:'Teacher dashboard API',desc:'Classes CRUD, class_enrollments, student results view, teacher comments',team:'BE',size:'L',pri:'P2'},
+      {id:'VA-62',title:'Teacher dashboard UI',desc:'Class management, student list với band + status, comment system',team:'FE',size:'L',pri:'P2'},
+      {id:'VA-63',title:'B2B onboarding flow',desc:'Center plan registration form, class code generation, bulk student invite',team:'FE',size:'M',pri:'P2'},
+      {id:'VA-64',title:'Streak + gamification system',desc:'Streak counter, daily goal notification (Zalo OA), leaderboard endpoint',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-65',title:'Email/Zalo notification system',desc:'Welcome email, weekly reminder, monthly progress report, win-back 7 ngày',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-66',title:'B2B outreach 10 trung tâm',desc:'Contact 10 English centers TP.HCM, send demo video, book 30-min call',team:'Marketing',size:'L',pri:'P1'},
+      {id:'VA-67',title:'SEO blog setup + 3 bài đầu',desc:'Blog trên vaeltis.io, "Lỗi Speaking phổ biến", "Band 7 Speaking guide", "Predicted topics 2026"',team:'Marketing',size:'M',pri:'P2'},
+      {id:'VA-68',title:'Cost tracking dashboard trong Admin',desc:'Redis daily cost → Filament chart, alert khi Claude spend > $8/ngày',team:'BE',size:'M',pri:'P2'},
+      {id:'VA-69',title:'Uptime monitoring',desc:'Better Uptime ping /health mỗi 1 phút, SMS alert khi down',team:'DevOps',size:'S',pri:'P2'},
+      {id:'VA-70',title:'Exit survey + churn analysis',desc:'Cancellation survey, phân tích lý do churn, action plan cải thiện retention',team:'Marketing',size:'M',pri:'P2'},
+    ]
+  },
+  {
+    id:'s8', title:'Sprint 8 — Tháng 6', sub:'Scale Ready + RAG Phase 2',
+    tasks:[
+      {id:'VA-71',title:'pgvector + RAG pipeline',desc:'Enable pgvector Supabase, embed 500+ essays, hybrid search, inject context vào prompt',team:'BE',size:'L',pri:'P3'},
+      {id:'VA-72',title:'Goethe Speaking module',desc:'Goethe question sets (A1–C1), German TTS voice, Goethe rubric prompt',team:'BE',size:'L',pri:'P3'},
+      {id:'VA-73',title:'Goethe UI pages',desc:'Level selector A1–C1, Speaking exam room Goethe variant, results Goethe format',team:'FE',size:'L',pri:'P3'},
+      {id:'VA-74',title:'Performance optimization',desc:'DB query profiling, Redis cache hit rate, N+1 queries fix, CDN static assets',team:'DevOps',size:'M',pri:'P2'},
+      {id:'VA-75',title:'PWA manifest + service worker',desc:'manifest.json, service-worker.js cache, add to home screen prompt',team:'FE',size:'S',pri:'P3'},
+      {id:'VA-76',title:'500 MAU milestone campaign',desc:'TikTok milestone video, press outreach (VnExpress Education, dán Trí), partner posts',team:'Marketing',size:'M',pri:'P2'},
+      {id:'VA-77',title:'Google Ads setup',desc:'Search campaign "luyện IELTS Speaking online", $100 budget, track conversion',team:'Marketing',size:'M',pri:'P2'},
+      {id:'VA-78',title:'Prompt version A/B testing framework',desc:'Deploy 2 prompt versions, split traffic 50/50, measure accuracy delta',team:'BE',size:'M',pri:'P3'},
+      {id:'VA-79',title:'Database partitioning + archiving',desc:'Partition api_usage_logs by month, archive chat_messages > 90 ngày',team:'DevOps',size:'M',pri:'P3'},
+      {id:'VA-80',title:'Investor-ready metrics dashboard',desc:'MRR chart, DAU/MAU, churn rate, CAC, LTV — Google Looker Studio hoặc Metabase',team:'Marketing',size:'M',pri:'P3'},
+    ]
+  },
+];
+
+function badgeClass(team){
+  return {BE:'b-be',FE:'b-fe',DevOps:'b-dv',Marketing:'b-mk'}[team]||'b-all';
+}
+function badgeLabel(team){
+  return {BE:'Backend',FE:'Frontend',DevOps:'DevOps',Marketing:'Marketing'}[team]||team;
+}
+
+let currentFilter = 'all';
+
+function filter(f, btn){
+  currentFilter = f;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderBoard();
+}
+
+function taskVisible(task){
+  if(currentFilter==='all') return true;
+  if(currentFilter==='P1') return task.pri==='P1';
+  if(currentFilter==='P2') return task.pri==='P2';
+  return task.team===currentFilter;
+}
+
+function renderBoard(){
+  const el = document.getElementById('board-content');
+  let html = '';
+  let counts = {total:0,BE:0,FE:0,other:0};
+
+  SPRINTS.forEach(sprint=>{
+    const visible = sprint.tasks.filter(taskVisible);
+    if(visible.length===0) return;
+    counts.total += visible.length;
+    visible.forEach(t=>{
+      if(t.team==='BE') counts.BE++;
+      else if(t.team==='FE') counts.FE++;
+      else counts.other++;
+    });
+    html += `<div class="sprint">
+      <div class="sprint-header">
+        <div class="sprint-title">${sprint.title}</div>
+        <div class="sprint-sub">${sprint.sub}</div>
+        <div class="sprint-count">${visible.length} tasks</div>
+      </div>
+      <div class="tasks">`;
+    visible.forEach(task=>{
+      html += `<div class="task" onclick="sendPrompt('Tell me more about ${task.id}: ${task.title} and how to implement it for V-AELTIS')">
+        <div class="task-id">${task.id}</div>
+        <div>
+          <div class="task-title">${task.title}</div>
+          <div class="task-desc">${task.desc}</div>
+        </div>
+        <span class="badge ${badgeClass(task.team)}">${badgeLabel(task.team)}</span>
+        <div style="display:flex;gap:4px;align-items:center">
+          <span class="size ${task.size}">${task.size}</span>
+          <span class="pri ${task.pri.toLowerCase()}">${task.pri}</span>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  if(html==='') html = '<div class="empty">Không có task nào phù hợp với filter này</div>';
+  el.innerHTML = html;
+
+  document.getElementById('s-total').textContent = counts.total;
+  document.getElementById('s-be').textContent = counts.BE;
+  document.getElementById('s-fe').textContent = counts.FE;
+  document.getElementById('s-dv').textContent = counts.other;
+}
+
+renderBoard();
+</script>
